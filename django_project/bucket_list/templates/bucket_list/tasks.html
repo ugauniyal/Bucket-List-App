@@ -1,0 +1,31 @@
+{% extends "bucket_list/base.html" %}
+{% block content %}
+
+<h2>Bucket-List</h2>
+
+<form method="POST" action="{% url 'tasks' %}">
+    {% csrf_token %}
+    {{form.title}}
+    <input type="submit" name="Create Task">
+</form>
+
+{% for task in tasks %}
+
+    <div>
+
+        <a href="{% url 'update' task.id %}">Update</a>
+        <a href="{% url 'delete' task.id %}">Delete</a>
+
+        {% if task.complete == True %}
+            <strike>{{task}}</strike>
+
+        {% else %}
+            <span>{{task}}</span>
+
+        {% endif %}
+
+    </div>
+    
+{% endfor %}
+
+{% endblock content %}
