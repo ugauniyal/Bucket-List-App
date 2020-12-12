@@ -1,0 +1,66 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Login</button>
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                </small>
+            </div>
+        </form>
+    </div>
+
+    <style>
+
+        body {
+        background: #ffffff;
+      }
+      form {
+        width: auto;
+        border-radius: 10%;
+        margin: 150px auto;
+        background: #efefef;
+        padding: 60px 120px 80px 120px;
+        text-align: center;
+        -webkit-box-shadow: 2px 2px 3px rgba(0,0,0.1,0.3);
+        box-shadow: 2px 2px 3px rgba(0,0,0.1,0.3);
+      }
+      label {
+        display: block;
+        position: relative;
+        margin: 40px 0px;
+        font-family: sans-serif;
+        font-size: 1em;
+        transition: ease .3s;
+      }
+      </style>
+
+</head>
+<body>
+    
+</body>
+</html>

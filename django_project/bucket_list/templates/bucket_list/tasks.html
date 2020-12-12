@@ -3,10 +3,18 @@
 
 <h2>Bucket-List</h2>
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <form method="POST" action="{% url 'tasks' %}">
     {% csrf_token %}
     {{form.title}}
-    <input type="submit" name="Create Task">
+    <input type="submit" value="Add To Bucket" name="Create Task">
 </form>
 
 {% for task in tasks %}
