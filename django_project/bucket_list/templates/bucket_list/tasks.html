@@ -3,36 +3,43 @@
 
 <h2>Bucket-List</h2>
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
-
 <form method="POST" action="{% url 'tasks' %}">
     {% csrf_token %}
     {{form.title}}
     <input type="submit" value="Add To Bucket" name="Create Task">
 </form>
 
+<br/>
+<br/>
+
+
+<h4>Incomplete Tasks</h4>
 {% for task in tasks %}
 
     <div>
-
-        <a href="{% url 'update' task.id %}">Update</a>
-        <a href="{% url 'delete' task.id %}">Delete</a>
-
-        {% if task.complete == True %}
-            <strike>{{task}}</strike>
-
-        {% else %}
+        {% if task.complete == False %}
+            <a href="{% url 'update' task.id %}">Update</a>
+            <a href="{% url 'delete' task.id %}">Delete</a>
             <span>{{task}}</span>
-
         {% endif %}
-
     </div>
+
+{% endfor %}
+
+
+<br/>
+<br/>
+<h4>Completed Tasks</h4>
+{% for task in tasks %}
+
+    <div>
+        {% if task.complete == True %}
+            <a href="{% url 'update' task.id %}">Update</a>
+            <a href="{% url 'delete' task.id %}">Delete</a>
+            <strike>{{task}}</strike>
+        {% endif %}
+    </div>
+
     
 {% endfor %}
 
