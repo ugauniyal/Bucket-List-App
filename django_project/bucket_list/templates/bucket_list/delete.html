@@ -2,14 +2,18 @@
 {% block content %}
 
 <h2>Delete Task</h2>
+<br/>
 
 <p>Are you sure you want to delete "{{item}}"?</p>
-<a href="{% url 'tasks' %}">Cancel</a>
+<br/>
+<a class="btn btn-outline-info" href="{% url 'tasks' %}">Cancel</a>
+<br/>
+<br/>
 
 
 <form method="POST" action="">
     {% csrf_token %}
-    <input type="submit" name="Delete">
+    <input type="submit" value="Confirm" class="btn btn-outline-danger" name="Delete">
 </form>
 
 

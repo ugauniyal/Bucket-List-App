@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -15,7 +16,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form':form})
 
-
+@login_required(login_url='login')
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)

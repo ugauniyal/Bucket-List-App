@@ -6,21 +6,27 @@
 <form method="POST" action="{% url 'tasks' %}">
     {% csrf_token %}
     {{form.title}}
-    <input type="submit" value="Add To Bucket" name="Create Task">
+    <input type="submit" class="btn btn-outline-success" value="Add To Bucket" style="margin-left: 6%;" name="Create Task">
 </form>
 
 <br/>
 <br/>
 
 
-<h4>Incomplete Tasks</h4>
+<h4><u>Incomplete Tasks</u></h4>
+<br/>
+<br/>
+
 {% for task in tasks %}
 
     <div>
         {% if task.complete == False %}
-            <a href="{% url 'update' task.id %}">Update</a>
-            <a href="{% url 'delete' task.id %}">Delete</a>
             <span>{{task}}</span>
+            <a type="button" class="btn btn-outline-info" style="border-radius: 5%; margin-left: 5%;" href="{% url 'update' task.id %}">Update</a>
+            <a type="button" class="btn btn-outline-danger" style="border-radius: 5%; margin-left: 5%;" href="{% url 'delete' task.id %}">Delete</a>
+            <hr/>
+            <br/>
+            <br/>
         {% endif %}
     </div>
 
@@ -29,14 +35,19 @@
 
 <br/>
 <br/>
-<h4>Completed Tasks</h4>
+<h4><u>Completed Tasks</u></h4>
+<br/>
+<br/>
 {% for task in tasks %}
 
     <div>
         {% if task.complete == True %}
-            <a href="{% url 'update' task.id %}">Update</a>
-            <a href="{% url 'delete' task.id %}">Delete</a>
             <strike>{{task}}</strike>
+            <a type="button" class="btn btn-outline-info" style="border-radius: 5%; margin-left: 5%;" href="{% url 'update' task.id %}">Update</a>
+            <a type="button" class="btn btn-outline-danger" style="border-radius: 5%; margin-left: 5%;" href="{% url 'delete' task.id %}">Delete</a>
+            <hr/>
+            <br/>
+            <br/>
         {% endif %}
     </div>
 
