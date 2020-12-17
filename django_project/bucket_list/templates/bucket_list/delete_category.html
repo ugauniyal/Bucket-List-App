@@ -1,0 +1,20 @@
+{% extends "bucket_list/base.html" %}
+{% block content %}
+
+<h2>Delete Category</h2>
+<br/>
+
+<p>Are you sure you want to delete "{{item}}"?</p>
+<br/>
+<a class="btn btn-outline-info" href="{% url 'category' %}">Cancel</a>
+<br/>
+<br/>
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="submit" value="Confirm" class="btn btn-outline-danger" name="Delete">
+</form>
+
+
+{% endblock content %}

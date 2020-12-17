@@ -10,11 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'bucket_list/main.css' %}">
-    {% if title %}
-        <title>Bucket List - {{ user.username }}</title>
-    {% else %}
-        <title>Bucket List</title>
-    {% endif %}
+    <title>Bucket List</title>
 </head>
 <body>
     <header class="site-header">
@@ -26,12 +22,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'tasks' %}">Home</a>
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'tasks' %}">Home</a>
+                <a class="nav-item nav-link" href="{% url 'category' %}">Add Category</a>
+              {% endif %}
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>

@@ -1,0 +1,32 @@
+{% extends "bucket_list/base.html" %}
+{% block content %}
+
+
+<h2>Categories</h2>
+<br/>
+<form method="POST" action="{% url 'category' %}">
+    {% csrf_token %}
+    {{form.name}}
+    <input type="submit" class="btn btn-outline-success" value="Create Category" style="margin-left: 6%;" name="Create Category">
+</form>
+
+<br/>
+<br/>
+<br/>
+
+{% for item in category %}
+
+    <div>
+        <span>{{item}}</span>
+        <a type="button" class="btn btn-outline-info" style="border-radius: 5%; margin-left: 5%;" href="{% url 'update-category' item.id %}">Update</a>
+        <a type="button" class="btn btn-outline-danger" style="border-radius: 5%; margin-left: 5%;" href="{% url 'delete-category' item.id %}">Delete</a>
+        <hr/>
+        <br/>
+        <br/>
+    </div>
+
+{% endfor %}
+
+
+
+{% endblock content %}

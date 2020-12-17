@@ -1,12 +1,14 @@
 {% extends "bucket_list/base.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
 
 <h2>Bucket-List</h2>
-
+<br/>
 <form method="POST" action="{% url 'tasks' %}">
     {% csrf_token %}
     {{form.title}}
-    <input type="submit" class="btn btn-outline-success" value="Add To Bucket" style="margin-left: 6%;" name="Create Task">
+    {{form.category}}
+    <input type="submit" class="btn btn-outline-success" value="Add To Bucket" name="Create Task">
 </form>
 
 <br/>

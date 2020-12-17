@@ -1,0 +1,30 @@
+{% extends "bucket_list/base.html" %}
+{% block content %}
+
+
+{% if category_task %}
+
+    <h2>{{cat}}</h2>
+
+    <br/>
+    <br/>
+
+    {% for item in category_task %}
+
+        <div>
+            <span>{{item}}</span>
+            {% if user.is_authenticated %}
+                <a type="button" class="btn btn-outline-info" style="border-radius: 5%; margin-left: 5%;" href="{% url 'update' item.id %}">Update</a>
+                <a type="button" class="btn btn-outline-danger" style="border-radius: 5%; margin-left: 5%;" href="{% url 'delete' item.id %}">Delete</a>
+            {% endif %}
+            <hr/>
+            <br/>
+            <br/>
+        </div>
+
+    {% endfor %}
+{% else %}
+    <h2>The Page Does Not Exists...</h2>
+{% endif %}
+
+{% endblock content %}
