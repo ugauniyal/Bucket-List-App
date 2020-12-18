@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bucket_list',
     'users',
+    'django_filters'
 ]
 
 MIDDLEWARE = [

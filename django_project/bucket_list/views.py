@@ -5,7 +5,7 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .filters import *
 
 
 def welcome(request):
@@ -18,7 +18,9 @@ def tasks(request):
     tasks = Task.objects.filter(user=request.user)
     form = TaskForm()
 
-    
+    myFilter = TaskFilter(request.GET, queryset=tasks)
+    tasks = myFilter.qs
+            
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -28,7 +30,7 @@ def tasks(request):
             messages.success(request, "Successfully created!")
             return redirect(instance.get_absolute_url())
 
-    context = {'tasks':tasks, 'form':form}
+    context = {'tasks':tasks, 'form':form, 'myFilter':myFilter}
     return render(request, 'bucket_list/tasks.html', context)
 
 
